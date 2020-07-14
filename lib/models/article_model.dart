@@ -1,5 +1,4 @@
 class Article {
-
   final String title;
   final String byline;
   final String url;
@@ -18,7 +17,11 @@ class Article {
 
   factory Article.fromMap(Map<String, dynamic> map) {
     return Article(
-      title: map['title'],
+      title: map['title']
+          .toString()
+          // Replace first four strange quotation characters being returned by the API.
+          .replaceAll("â", "'")
+          .replaceAll("", ""),
       byline: map['byline'],
       url: map['url'],
       imageUrl: map['multimedia'].length > 0
